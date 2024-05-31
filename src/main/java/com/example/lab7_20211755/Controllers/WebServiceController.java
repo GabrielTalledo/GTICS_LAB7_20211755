@@ -91,6 +91,10 @@ public class WebServiceController {
 
             if(userOpt.isPresent()){
                 user = userOpt.get();
+                if(!user.isActive()){
+                    respuesta.put("MensajeA","El usuario no puede autenticarse.");
+                    validacion = false;
+                }
             }else{
                 respuesta.put("MensajeA","El id usuario no es válido.");
                 validacion = false;
