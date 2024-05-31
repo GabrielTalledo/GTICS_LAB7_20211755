@@ -18,4 +18,10 @@ public interface UserRepository extends JpaRepository<User, Integer>  {
     @Modifying
     @Transactional
     void cambiarTipoPorId(int userId, String type, int resource);
+
+    @Query(nativeQuery = true, value = "UPDATE users SET active = false")
+    @Modifying
+    @Transactional
+    void apagar();
+
 }

@@ -190,7 +190,7 @@ public class WebServiceController {
     //Actualizar tipo
     @PutMapping(value = {"/actualizar"})
     public ResponseEntity<HashMap<String, Object>> actualizar(@RequestParam(value = "userId", required = false) String userIdStr,
-    @RequestParam(value = "type", required = false) String type) {
+                                                                @RequestParam(value = "type", required = false) String type) {
 
         HashMap<String, Object> respuesta = new HashMap<>();
         User user = new User();
@@ -241,5 +241,15 @@ public class WebServiceController {
             return ResponseEntity.badRequest().body(respuesta);
         }
 
+    }
+
+    @PostMapping(value = {"/apagar"})
+    public ResponseEntity<HashMap<String, Object>> apagar() {
+        HashMap<String, Object> respuesta = new HashMap<>();
+
+        userRepository.apagar();
+
+        respuesta.put("Mensaje","Todos los usuarios fueron apagados exitosamente.");
+        return ResponseEntity.ok(respuesta);
     }
 }
